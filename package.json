@@ -16,7 +16,7 @@
         "test:open-ct": "cypress open-ct",
         "test:run-ct": "cypress run-ct",
         "test": "npm run test:run-app && npm run test:run-ct",
-        
+
         "tsc:check": "tsc -p ./tsconfig.json && tsc -p ./cypress/tsconfig.json",
         "eslint:check": "eslint src/**/*.{ts,tsx}",
         "eslint:fix": "eslint src/**/*.{ts,tsx} --fix",

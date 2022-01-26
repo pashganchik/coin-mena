@@ -4,12 +4,11 @@ import { ToastContainer } from 'react-toastify';
 
 import { getLocaleInfo } from './utils/locale';
 
-import Header from './components/shared/Header/Header';
 import Footer from './components/shared/Footer/Footer';
-import HomePage from './components/pages/HomePage/HomePage';
+import ReposPage from './components/pages/ReposPage/ReposPage';
+import DevsPage from './components/pages/DevsPage/DevsPage';
 
 import { WrapIntlProvider } from './utils/providers';
-import { Const } from './utils/const';
 
 import './App.scss';
 import './main.scss';
@@ -21,11 +20,16 @@ const App = (props: IAppProps): React.ReactElement => {
         <div className="app" dir={localeInfo.direction}>
             <ToastContainer />
             <BrowserRouter>
-                <Header />
                 <div className="appContent">
                     <Switch>
-                        <Route exact path="/">
-                            <HomePage />
+                        <Route exact path="/repos">
+                            <ReposPage />
+                        </Route>
+                        <Route exact path="/devs">
+                            <DevsPage />
+                        </Route>
+                        <Route>
+                            <ReposPage />
                         </Route>
                     </Switch>
                 </div>

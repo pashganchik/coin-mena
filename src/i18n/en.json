@@ -1,3 +1,6 @@
 {
-  "testLabel": "testText"
+  "footer-text": "Coin Mena, Copyright © {date}, All right reserved",
+  "header-title": "Trending",
+  "header-text-repos": "See what the GutHub community is most exited about today.",
+  "header-text-devs": "This are the developers builing the hot tools today."
 }

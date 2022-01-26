@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Home Page tests', () => {
+describe('Repos Page tests', () => {
     beforeEach(() => {
         cy.visit('/');
     });

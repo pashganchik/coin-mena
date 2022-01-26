@@ -9,11 +9,5 @@ describe('Footer Component tests', () => {
 
     it('Contains text and button', () => {
         cy.get('.footer__container').should('exist').contains(/.*/);
-        cy.get('.footer')
-            .find('button')
-            .then((x) => {
-                expect(x).has.length(1);
-                expect(x).has.text('Back to top');
-            });
     });
 });

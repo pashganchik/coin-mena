@@ -56,6 +56,6 @@ export function getLocaleInfo(locale?: string): ILocaleInfo {
         localeRaw: localeRaw,
         languageRaw: languageRaw,
         locale: loc,
-        direction: 'rtl',
+        direction: 'ltr',
     });
 }

@@ -8,33 +8,17 @@
     text-align: center;
     width: 100%;
     height: $footer-height;
-    background-color: $white;
-    border-top: $border-main-color solid 1px;
+    background-color: $grey-600;
+    border-top: 1px solid $border-main-color;
 
     &__container {
         margin-right: auto;
         margin-left: auto;
         padding-left: $spacing-s;
         padding-right: $spacing-s;
-        flex: 0 1 55%;
 
         small {
             font-size: $font-size-s;
-            color: $grey-500;
-            float: left;
-        }
-
-        a {
-            background-color: transparent;
-            color: $link-color;
-        }
-    }
-
-    &__back-to-top {
-        padding: 18px;
-
-        button {
-            background-image: none !important;
         }
     }
 }
