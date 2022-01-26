@@ -1,0 +1,16 @@
+{
+    "__comment__": "Cypress default config file (used for the Isolated Components tests)",
+    "viewportWidth": 1100,
+    "viewportHeight": 720,
+    "video": false,
+    "nodeVersion": "system",
+    "component": {
+        "testFiles": "**/*.spec.{js,ts,jsx,tsx}",
+        "componentFolder": "cypress/integration/components"
+    },
+    "reporter": "junit",
+    "reporterOptions": {
+        "mochaFile": "results/ct-test-results-[hash].xml",
+        "testCaseSwitchClassnameAndName": false
+    }
+}

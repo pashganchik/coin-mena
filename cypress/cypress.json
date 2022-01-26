@@ -1,0 +1,14 @@
+{
+    "__comment__": "Cypress config file for component and e2e-tests",
+    "baseUrl": "http://localhost:3001",
+    "testFiles": "*e2e*/*.spec.{js,ts,jsx,tsx}",
+    "viewportWidth": 1100,
+    "viewportHeight": 720,
+    "video": false,
+    "nodeVersion": "system",
+    "reporter": "junit",
+    "reporterOptions": {
+        "mochaFile": "results/test-results-[hash].xml",
+        "testCaseSwitchClassnameAndName": false
+    }
+}

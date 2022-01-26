@@ -1,0 +1,11 @@
+@import './css/colors.scss';
+@import './css/variables.scss';
+
+.app {
+    color: $text-primary-color;
+    height: 100%;
+
+    .appContent {
+        min-height: calc(100vh - #{$header-height + $menu-height + $footer-height});
+    }
+}
