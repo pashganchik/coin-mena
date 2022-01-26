@@ -1,0 +1,15 @@
+@import '../../../css/colors.scss';
+@import '../../../css/variables.scss';
+
+.data-list {
+    &__top-pane {
+        display: flex;
+        justify-content: space-between;
+        background-color: $grey-600;
+        padding: $spacing-xxs;
+    }
+
+    &__data-pane {
+        padding: $spacing-xs;
+    }
+}

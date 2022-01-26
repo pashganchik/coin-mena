@@ -1,0 +1,24 @@
+@import '../../../css/colors.scss';
+@import '../../../css/variables.scss';
+
+.data-filters {
+    display: flex;
+
+    &__item {
+        display: flex;
+        align-items: center;
+
+        &-dropdown {
+            margin: 0 10px;
+            min-width: 100px;
+
+            button.dropdown-toggle {
+                width: 100%;
+                text-align: left;
+                background: transparent;
+                border: none;
+                box-shadow: none !important;
+            }
+        }
+    }
+}

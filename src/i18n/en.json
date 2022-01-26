@@ -2,5 +2,12 @@
   "footer-text": "Coin Mena, Copyright © {date}, All right reserved",
   "header-title": "Trending",
   "header-text-repos": "See what the GutHub community is most exited about today.",
-  "header-text-devs": "This are the developers builing the hot tools today."
+  "header-text-devs": "This are the developers builing the hot tools today.",
+  "repositories": "Repositories",
+  "developers": "Developers",
+  "label-spoken-language": "Spoken Language:",
+  "label-language": "Language:",
+  "label-date-range": "Date Range:",
+  "any-option": "Any",
+  "loading": "Data is loading, pease wait ..."
 }

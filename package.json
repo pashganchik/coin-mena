@@ -9,14 +9,12 @@
         "clean": "shx rm -rf dist/",
         "clean:modules": "shx rm -rf node_modules",
         "start-app": "webpack-dev-server --config ./webpack.app.config.js --mode development",
-
         "start-app-test": "webpack-dev-server --config ./webpack.test.config.js --mode development",
         "test:open-app": "start-server-and-test start-app-test 3001 'cypress open --config-file cypress/cypress.json'",
         "test:run-app": "start-server-and-test start-app-test 3001 'cypress run --config-file cypress/cypress.json'",
         "test:open-ct": "cypress open-ct",
         "test:run-ct": "cypress run-ct",
         "test": "npm run test:run-app && npm run test:run-ct",
-
         "tsc:check": "tsc -p ./tsconfig.json && tsc -p ./cypress/tsconfig.json",
         "eslint:check": "eslint src/**/*.{ts,tsx}",
         "eslint:fix": "eslint src/**/*.{ts,tsx} --fix",
@@ -74,6 +72,7 @@
         "@types/redux-logger": "^3.0.9",
         "@types/redux-mock-store": "1.0.3",
         "classnames": "^2.3.1",
+        "github-trends-api": "^1.0.1",
         "react": "^17.0.2",
         "react-bootstrap": "^2.1.1",
         "react-cookie": "^4.1.1",

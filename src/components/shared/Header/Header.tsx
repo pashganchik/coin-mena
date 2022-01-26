@@ -5,6 +5,7 @@ import './Header.scss';
 
 const Header = (props: IHeaderProps): React.ReactElement => {
     const { textId } = props;
+    
     return (
         <header className="header">
             <h1><FormattedMessage id='header-title'/></h1>
