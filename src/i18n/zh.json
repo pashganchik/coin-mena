@@ -9,5 +9,9 @@
   "label-language": "Language:",
   "label-date-range": "Date Range:",
   "any-option": "Any",
-  "loading": "Data is loading, pease wait ..."
+  "loading": "Data is loading, pease wait ...",
+  "no-data": "There is no data by your request",
+  "follow": "Follow",
+  "unfollow": "Unfollow",
+  "sponsor": "Sponsor"
 }

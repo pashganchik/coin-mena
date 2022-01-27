@@ -16,3 +16,8 @@ export const selectDevelopersLoading = (state: IRootState): boolean => state.dat
 
 export const selectWorkMode = (state: IRootState): WorkModeEnum => state.data.workMode;
 export const selectCustomFilter = (state: IRootState): ICustomFilter => state.data.customFilter;
+
+export const selectStarExecuted = (state: IRootState): boolean => state.data.starExecuted;
+export const selectFollowExecuted = (state: IRootState): boolean => state.data.followExecuted;
+
+export const selectError = (state: IRootState): boolean => state.data.error;

@@ -34,7 +34,7 @@ const Filters = (props: IDataListProps): React.ReactElement => {
         return { 
             spokenLanguage: spokenLanguage === anyOption ? '' : spokenLanguage,
             language: language === anyOption ? '' : language,
-            dateRange: dateRange === anyOption ? 'daily' : dateRange,
+            dateRange: dateRange === anyOption ? '' : dateRange,
         };
     }
 

@@ -9,7 +9,13 @@ import {
     GET_REPOS_DONE,
     GET_DEVS_DONE,
     SET_WORK_MODE,
-    SET_CUSTOM_FILTER
+    SET_CUSTOM_FILTER,
+    SET_STAR_REPO_DONE,
+    SET_FOLLOW_DEV_DONE,
+    SET_UNFOLLOW_DEV_DONE,
+    SET_STAR_REPO,
+    SET_FOLLOW_DEV,
+    SET_UNFOLLOW_DEV
 } from './actions';
 
 const initialState: IDataState = {
@@ -19,6 +25,9 @@ const initialState: IDataState = {
     developers: [],
     developersLoading: false,
     customFilter: {},
+    starExecuted: false,
+    followExecuted: false,
+    error: false,
 };
 
 type InitialStateType = typeof initialState;
@@ -37,7 +46,7 @@ const mainReducer = (state = initialState, action: AnyAction): InitialStateType 
         }
         case GET_DEVS_DONE: {
             const { developers } = action;
-            return { ...state, developers, repositoryLoading: false };
+            return { ...state, developers, developersLoading: false };
         }
         case SET_WORK_MODE: {
             const workMode = action.data;
@@ -46,6 +55,22 @@ const mainReducer = (state = initialState, action: AnyAction): InitialStateType 
         case SET_CUSTOM_FILTER: {
             const customFilter = action.data;
             return { ...state, customFilter };
+        }
+
+        case SET_STAR_REPO: 
+        case SET_FOLLOW_DEV: 
+        case SET_UNFOLLOW_DEV: {
+            return { ...state, starExecuted: false, followExecuted: false, error: false };
+        }
+
+        case SET_STAR_REPO_DONE: {
+            return { ...state, starExecuted: true, error: false };
+        }
+        case SET_FOLLOW_DEV_DONE: {
+            return { ...state, followExecuted: true, error: false };
+        }
+        case SET_UNFOLLOW_DEV_DONE: {
+            return { ...state, followExecuted: true, error: false };
         }
 
         default:

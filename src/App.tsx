@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 import { getLocaleInfo } from './utils/locale';
 
@@ -15,6 +16,7 @@ import './main.scss';
 
 const App = (props: IAppProps): React.ReactElement => {
     const localeInfo = useMemo(() => getLocaleInfo(), []);
+    injectStyle();
 
     const appComponent = (
         <div className="app" dir={localeInfo.direction}>

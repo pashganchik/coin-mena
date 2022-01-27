@@ -4,6 +4,10 @@
 
 React-based application for Test React Functionality
 
+<b><u>IMPORTANT:</u></b> all the endpoints from the task beget CORS errors: https://gh-trending-api.herokuapp.com and library https://www.npmjs.com/package/github-trends-api
+
+That's why I used standard GitHub API to get data: https://api.github.com
+
 ## **Requirements/dependencies**
 
 - husky
