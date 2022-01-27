@@ -10,6 +10,8 @@ That's why I used standard GitHub API to get data: https://api.github.com
 
 Please, fill-up your value for the Developer Token in the file `src\utils\const.ts`, property `GitHubAccessToken` to have an access to implement API requests.
 
+Or just remove symbol `#` from the current token (cause GIT eliminate tokens which commited)
+
 ## **Requirements/dependencies**
 
 - husky
