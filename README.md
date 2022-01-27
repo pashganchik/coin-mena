@@ -4,6 +4,8 @@
 
 React-based application for Test React Functionality
 
+I used `REDUX` to handle application state cause in the description of vacancy there was this way to handle application state (but we may use `Mobx` or `React.Context`)
+
 <b><u>IMPORTANT:</u></b> all the endpoints from the task beget CORS errors: https://gh-trending-api.herokuapp.com and library https://www.npmjs.com/package/github-trends-api
 
 That's why I used standard GitHub API to get data: https://api.github.com
