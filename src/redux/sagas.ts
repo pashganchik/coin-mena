@@ -54,6 +54,7 @@ function* fetchRepos(data: any) {
 
     let repositories: IRepository[] = yield call(callApi, url, params);
 
+    // fill FullData
     const callsFullData = repositories.map((x) => {
         const urlFullData = `${Const.ApiBaseUrl}/repositories/${x.id}`;
         return call(callApi, urlFullData, params);
@@ -64,6 +65,20 @@ function* fetchRepos(data: any) {
         const repo = repositories.find((r) => r.id === fullRepo.id);
         if (repo) {
             repo.fullData = fullRepo;
+        }
+    });
+
+    // fill Contributors
+    const callsContributorsData = repositories.map((x) => {
+        const urlFullData = `${Const.ApiBaseUrl}/repositories/${x.id}/contributors`;
+        return call(callApi, urlFullData, params);
+    });
+    const contributorsData: IDeveloper[][] = yield all(callsContributorsData);
+
+    contributorsData.forEach((contributors, idx) => {
+        const repo = repositories[idx];
+        if (repo) {
+            repo.fullContributors = contributors;
         }
     });
 
@@ -221,7 +236,7 @@ function* fetchDevsGitHubTrends(data: any) {
 function* doSetStarRepo(data: any) {
     const repositoryId = data.data;
 
-    yield delay(1000);
+    yield delay(500);
 
     yield put({
         type: SET_STAR_REPO_DONE,
@@ -232,7 +247,7 @@ function* doSetStarRepo(data: any) {
 function* doSetFollowDev(data: any) {
     const developerId = data.data;
 
-    yield delay(1000);
+    yield delay(500);
 
     yield put({
         type: SET_FOLLOW_DEV_DONE,
@@ -243,7 +258,7 @@ function* doSetFollowDev(data: any) {
 function* doSetUnfollowDev(data: any) {
     const developerId = data.data;
 
-    yield delay(1000);
+    yield delay(500);
 
     yield put({
         type: SET_UNFOLLOW_DEV_DONE,

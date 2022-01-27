@@ -13,12 +13,15 @@ import {
     selectError,
 } from '../../../redux/selectors';
 import { IRootState, ICustomFilter, IRepository } from '../../../utils/types';
-import { getRepos, setStarRepo } from '../../../redux/actions';
+import { getRepos, setStarRepo, clearUserActions } from '../../../redux/actions';
 
 import './DataRepos.scss';
 
+const MAX_VISIBLE_CONTIBUTORS = 15;
+
 const DataRepos = (props: IDataReposProps): React.ReactElement => {
-    const { filter, repositories, isLoading, starExecuted, error, getRepositories, setStarRepo } = props;
+    const { filter, repositories, isLoading, starExecuted, error, getRepositories, setStarRepo, clearUserActions } =
+        props;
     const intl = useIntl();
 
     useEffect(() => {
@@ -32,6 +35,7 @@ const DataRepos = (props: IDataReposProps): React.ReactElement => {
             } else {
                 toast.error(intl.formatMessage({ id: 'error' }));
             }
+            clearUserActions();
         }
     }, [starExecuted]);
 
@@ -75,7 +79,10 @@ const DataRepos = (props: IDataReposProps): React.ReactElement => {
                                         </div>
                                         <div className="repo-info-users">
                                             Built by: &nbsp;
-                                            <img src={repo.owner?.avatar_url}></img>
+                                            {repo.fullContributors &&
+                                                repo.fullContributors
+                                                    .slice(0, MAX_VISIBLE_CONTIBUTORS)
+                                                    .map((x, idx) => <img key={idx} src={x.avatar_url}></img>)}
                                         </div>
                                     </div>
                                 </Col>
@@ -115,11 +122,13 @@ const mapStateToProps = (state: IRootState) => {
 interface IPropsDispatch {
     getRepositories: (filter: ICustomFilter) => void;
     setStarRepo: (repoId: number) => void;
+    clearUserActions: () => void;
 }
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
         getRepositories: (filter: ICustomFilter): void => dispatch(getRepos(filter)),
         setStarRepo: (repoId: number): void => dispatch(setStarRepo(repoId)),
+        clearUserActions: (): void => dispatch(clearUserActions()),
     };
 };
 

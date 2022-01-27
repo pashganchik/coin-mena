@@ -8,13 +8,23 @@ import { toast } from 'react-toastify';
 
 import { selectDevelopers, selectDevelopersLoading, selectFollowExecuted, selectError } from '../../../redux/selectors';
 import { IRootState, ICustomFilter, IDeveloper } from '../../../utils/types';
-import { getDevs, setFollowDev, setUnfollowDev } from '../../../redux/actions';
+import { getDevs, setFollowDev, setUnfollowDev, clearUserActions } from '../../../redux/actions';
 import { Const } from '../../../utils/const';
 
 import './DataDevs.scss';
 
 const DataDevs = (props: IDataReposProps): React.ReactElement => {
-    const { filter, developers, isLoading, followExecuted, error, getDevelopers, setFollowDev, setUnfollowDev } = props;
+    const {
+        filter,
+        developers,
+        isLoading,
+        followExecuted,
+        error,
+        getDevelopers,
+        setFollowDev,
+        setUnfollowDev,
+        clearUserActions,
+    } = props;
     const intl = useIntl();
 
     useEffect(() => {
@@ -28,6 +38,7 @@ const DataDevs = (props: IDataReposProps): React.ReactElement => {
             } else {
                 toast.error(intl.formatMessage({ id: 'error' }));
             }
+            clearUserActions();
         }
     }, [followExecuted]);
 
@@ -138,12 +149,14 @@ interface IPropsDispatch {
     getDevelopers: (filter: ICustomFilter) => void;
     setFollowDev: (devId: number) => void;
     setUnfollowDev: (devId: number) => void;
+    clearUserActions: () => void;
 }
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
         getDevelopers: (filter: ICustomFilter): void => dispatch(getDevs(filter)),
         setFollowDev: (devId: number): void => dispatch(setFollowDev(devId)),
         setUnfollowDev: (devId: number): void => dispatch(setUnfollowDev(devId)),
+        clearUserActions: (): void => dispatch(clearUserActions()),
     };
 };
 

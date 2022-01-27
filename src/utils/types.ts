@@ -104,6 +104,7 @@ export interface IRepository {
     url: string;
 
     fullData: IRepositoryFull;
+    fullContributors: IDeveloper[];
 }
 
 export interface IRepositoryFull {

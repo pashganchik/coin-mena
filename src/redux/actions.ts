@@ -19,6 +19,8 @@ export const SET_FOLLOW_DEV_DONE = 'SET_FOLLOW_DEV_DONE';
 export const SET_UNFOLLOW_DEV = 'SET_UNFOLLOW_DEV';
 export const SET_UNFOLLOW_DEV_DONE = 'SET_UNFOLLOW_DEV_DONE';
 
+export const CLEAR_USER_ACTIONS = 'CLEAR_USER_ACTIONS';
+
 //////////////////////////////////////////////////////////////////////
 // interfaces
 //////////////////////////////////////////////////////////////////////
@@ -56,4 +58,8 @@ export function setFollowDev(data: number): ICustomAction<number> {
 
 export function setUnfollowDev(data: number): ICustomAction<number> {
     return { type: SET_UNFOLLOW_DEV, data };
+}
+
+export function clearUserActions(): AnyAction {
+    return { type: CLEAR_USER_ACTIONS };
 }

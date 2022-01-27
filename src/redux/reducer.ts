@@ -14,6 +14,7 @@ import {
     SET_STAR_REPO,
     SET_FOLLOW_DEV,
     SET_UNFOLLOW_DEV,
+    CLEAR_USER_ACTIONS,
 } from './actions';
 
 const initialState: IDataState = {
@@ -69,6 +70,9 @@ const mainReducer = (state = initialState, action: AnyAction): InitialStateType 
         }
         case SET_UNFOLLOW_DEV_DONE: {
             return { ...state, followExecuted: true, error: false };
+        }
+        case CLEAR_USER_ACTIONS: {
+            return { ...state, starExecuted: false, followExecuted: false, error: false };
         }
 
         default:
