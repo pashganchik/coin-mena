@@ -236,7 +236,7 @@ function* fetchDevsGitHubTrends(data: any) {
 function* doSetStarRepo(data: any) {
     const repositoryId = data.data;
 
-    yield delay(500);
+    yield delay(500); // this is just an emulation of API request. The process is the same: post data -> process result -> change state via reducer
 
     yield put({
         type: SET_STAR_REPO_DONE,
@@ -247,7 +247,7 @@ function* doSetStarRepo(data: any) {
 function* doSetFollowDev(data: any) {
     const developerId = data.data;
 
-    yield delay(500);
+    yield delay(500); // this is just an emulation of API request. The process is the same: post data -> process result -> change state via reducer
 
     yield put({
         type: SET_FOLLOW_DEV_DONE,
@@ -258,7 +258,7 @@ function* doSetFollowDev(data: any) {
 function* doSetUnfollowDev(data: any) {
     const developerId = data.data;
 
-    yield delay(500);
+    yield delay(500); // this is just an emulation of API request. The process is the same: post data -> process result -> change state via reducer
 
     yield put({
         type: SET_UNFOLLOW_DEV_DONE,
