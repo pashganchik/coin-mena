@@ -26,7 +26,7 @@ const DataDevs = (props: IDataReposProps): React.ReactElement => {
             {developers && developers.length > 0 && developers.map((dev, i) => {
                 return (
                     <div key={i} className='dev-card'>
-                        {dev.name}
+                        {dev.login}
                     </div>
                 )
             })}

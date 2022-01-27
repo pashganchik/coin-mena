@@ -27,8 +27,8 @@ const DataList = (props: IDataListProps): React.ReactElement => {
 
             <div className='data-list__data-pane'>
                 { workMode === WorkModeEnum.REPOS 
-                    ? <DataRepos filter={customFilter} /> 
-                    : <DataDevs filter={customFilter} /> 
+                    ? <DataRepos filter={customFilter} />
+                    : <DataDevs filter={customFilter} />
                 }
             </div>
         </div>

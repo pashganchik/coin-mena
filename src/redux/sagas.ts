@@ -9,11 +9,12 @@ import {
     IDeveloper,
     IRepository,
     ICustomFilter,
-    IGitHubOptions
+    IGitHubOptions,
+    IRepositoryFull
 } from '../utils/types';
 import { Const } from '../utils/const';
 
-import githubTrends from 'github-trends-api';
+import githubTrends from 'github-trends-api'; // Begets CORS errors
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -22,6 +23,7 @@ const prepareHeaders = (): HeadersInit => {
 
     headers.set('Accept', 'application/json');
     headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', `token ${Const.GitHubAccessToken}`);
 
     return headers;
 };
@@ -45,6 +47,19 @@ function* fetchRepos(data: any) {
 
     const repositories: IRepository[] = yield call(callApi, url, params);
 
+    const callsFullData = (repositories).map((x) => {
+        const urlFullData = `${Const.ApiBaseUrl}/repositories/${x.id}`;
+        return call(callApi, urlFullData, params);
+    });
+    const fullData: IRepositoryFull[] = yield all(callsFullData);
+    
+    fullData.forEach(fullRepo => {
+        const repo = repositories.find(r => r.id === fullRepo.id);
+        if (repo) {
+            repo.fullData = fullRepo;
+        }
+    });
+
     yield put({
         type: GET_REPOS_DONE,
         repositories,
@@ -55,7 +70,7 @@ function* fetchDevs(data: any) {
     const headers: HeadersInit = prepareHeaders();
     const params = { method: 'GET', headers };
 
-    const url = `${Const.ApiBaseUrl}/developers`;
+    const url = `${Const.ApiBaseUrl}/users`;
 
     const developers: IDeveloper[] = yield call(callApi, url, params);
 
@@ -65,6 +80,9 @@ function* fetchDevs(data: any) {
     });
 }
 
+/**
+ * This method throws CORS error
+ */
 function* fetchReposGitHubTrends(data: any) {
     const filter = data.data as ICustomFilter;
 
@@ -83,6 +101,9 @@ function* fetchReposGitHubTrends(data: any) {
     });
 }
 
+/**
+ * This method throws CORS error
+ */
 function* fetchDevsGitHubTrends(data: any) {
     const filter = data.data as ICustomFilter;
 
@@ -93,21 +114,21 @@ function* fetchDevsGitHubTrends(data: any) {
         since: filter.dateRange,
     };
 
-    const repositories: IRepository[] = yield call(callPromise, githubTrends, options);
+    const developers: IDeveloper[] = yield call(callPromise, githubTrends, options);
 
     yield put({
-        type: GET_REPOS_DONE,
-        repositories,
+        type: GET_DEVS_DONE,
+        developers,
     });
 }
 
 //////////////////////////////////////////////////////////////////////
 
 function* actionWatcher() {
-    //yield takeLatest(GET_REPOS, fetchRepos);
-    //yield takeLatest(GET_DEVS, fetchDevs);
-    yield takeLatest(GET_REPOS, fetchReposGitHubTrends);
-    yield takeLatest(GET_DEVS, fetchDevsGitHubTrends);
+    yield takeLatest(GET_REPOS, fetchRepos);
+    yield takeLatest(GET_DEVS, fetchDevs);
+    //yield takeLatest(GET_REPOS, fetchReposGitHubTrends);
+    //yield takeLatest(GET_DEVS, fetchDevsGitHubTrends);
 }
 
 export default function* rootSaga() {
