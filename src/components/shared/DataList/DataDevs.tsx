@@ -104,7 +104,11 @@ const DataDevs = (props: IDataReposProps): React.ReactElement => {
                                 <Col xs={4}>
                                     <div className="dev-actions">
                                         {dev.fullData?.hireable && (
-                                            <Button variant="secondary" className="dev-actions__sponsor">
+                                            <Button
+                                                variant="secondary"
+                                                className="dev-actions__sponsor"
+                                                onClick={() => handleSwitchFollow(dev.id, devIsFollowedByCurrent)}
+                                            >
                                                 <FaHeart />
                                                 <FormattedMessage id="sponsor" />
                                             </Button>
