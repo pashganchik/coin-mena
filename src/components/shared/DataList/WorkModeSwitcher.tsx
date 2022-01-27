@@ -10,15 +10,21 @@ const WorkModeSwitcher = (props: IWorkModeSwitcher): React.ReactElement => {
 
     const handleSetMode = (newMode: WorkModeEnum) => {
         onSetWorkMode(newMode);
-    }
+    };
 
     return (
         <div className="work-mode-switcher">
-            <Button onClick={() => handleSetMode(WorkModeEnum.REPOS)} variant={workMode === WorkModeEnum.REPOS ? 'primary' : 'secondary'}>
-                <FormattedMessage id='repositories'/>
+            <Button
+                onClick={() => handleSetMode(WorkModeEnum.REPOS)}
+                variant={workMode === WorkModeEnum.REPOS ? 'primary' : 'secondary'}
+            >
+                <FormattedMessage id="repositories" />
             </Button>
-            <Button onClick={() => handleSetMode(WorkModeEnum.DEVS)} variant={workMode === WorkModeEnum.DEVS ? 'primary' : 'secondary'}>
-                <FormattedMessage id='developers'/>
+            <Button
+                onClick={() => handleSetMode(WorkModeEnum.DEVS)}
+                variant={workMode === WorkModeEnum.DEVS ? 'primary' : 'secondary'}
+            >
+                <FormattedMessage id="developers" />
             </Button>
         </div>
     );

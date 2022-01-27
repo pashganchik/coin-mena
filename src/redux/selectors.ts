@@ -1,10 +1,4 @@
-import {
-    IRootState,
-    IRepository,
-    IDeveloper,
-    WorkModeEnum,
-    ICustomFilter
-} from '../utils/types';
+import { IRootState, IRepository, IDeveloper, WorkModeEnum, ICustomFilter } from '../utils/types';
 
 /////////////////////////////////////////////////////////////
 

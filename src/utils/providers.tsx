@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import { LOCALES, messages } from './locale';
 

@@ -11,29 +11,18 @@ import rootSaga from '../../src/redux/sagas';
 import { LOCALES } from '../../src/utils/locale';
 import { Const, Stubs } from './const';
 import { WrapIntlProvider } from '../../src/utils/providers';
+import { WorkModeEnum } from '../../src/utils/types';
 
 const initialTestData = {
-    authData: Stubs.AuthenticateStub,
-    userData: Stubs.UserDataStub,
-    configurationData: Stubs.ConfigurationDataStub,
-    recentLinks: null,
-    loading: false,
-    filterIsLoading: false,
-    favoriteDocumentWasAdded: false, // indicates whether we need to reload documents grid to display or hide star marks
-    favoriteDocumentWasDeleted: false, // indicates whether we need to reload documents grid to display or hide star marks
-    userDataWasUpdated: false, // user data was updated and needs to be reloaded
-    folderItems: null,
-    filteredFolderItems: null,
-    channels: null,
-    documents: null,
-    favorites: null,
-    totalDocumentsCount: 0,
-    filteredDocumentsCount: 0,
-    recentFavoriteData: null, // last object which was changed with favorites
-    folderPath: null,
-    customThemeData: {},
-    customFooterData: {},
-    channelsCount: null,
+    workMode: WorkModeEnum.REPOS,
+    repositories: [],
+    repositoryLoading: false,
+    developers: [],
+    developersLoading: false,
+    customFilter: {},
+    starExecuted: false,
+    followExecuted: false,
+    error: false,
 };
 
 export const createTestState = (dataState?: any) => {

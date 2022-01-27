@@ -17,11 +17,11 @@ import {
     ICustomFilter,
     IGitHubOptions,
     IRepositoryFull,
-    IDeveloperFull
+    IDeveloperFull,
 } from '../utils/types';
 import { Const } from '../utils/const';
 
-import githubTrends from 'github-trends-api'; // Begets CORS errors
+// import githubTrends from 'github-trends-api'; // Begets CORS errors
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -40,7 +40,7 @@ async function callApi(url: string, params: { [key: string]: any }): Promise<any
     return await response.json();
 }
 
-async function callPromise(promise: any, params: { [key: string]: any}): Promise<any> {
+async function callPromise(promise: any, params: { [key: string]: any }): Promise<any> {
     return await promise(params);
 }
 
@@ -54,14 +54,14 @@ function* fetchRepos(data: any) {
 
     let repositories: IRepository[] = yield call(callApi, url, params);
 
-    const callsFullData = (repositories).map((x) => {
+    const callsFullData = repositories.map((x) => {
         const urlFullData = `${Const.ApiBaseUrl}/repositories/${x.id}`;
         return call(callApi, urlFullData, params);
     });
     const fullData: IRepositoryFull[] = yield all(callsFullData);
 
-    fullData.forEach(fullRepo => {
-        const repo = repositories.find(r => r.id === fullRepo.id);
+    fullData.forEach((fullRepo) => {
+        const repo = repositories.find((r) => r.id === fullRepo.id);
         if (repo) {
             repo.fullData = fullRepo;
         }
@@ -70,19 +70,19 @@ function* fetchRepos(data: any) {
     // This is emulation of filtering data (on client side, cause I haven't found filtering methods for the REST API endpoints)
     const filter: ICustomFilter = data.data;
     if (filter) {
-        repositories = repositories.filter(repo => {
+        repositories = repositories.filter((repo) => {
             let result = true;
             if (filter.dateRange) {
-                result = result && (!!repo.fullData.pushed_at);
+                result = result && !!repo.fullData.pushed_at;
             }
             if (filter.spokenLanguage) {
                 result = result && true; //??
             }
             if (filter.language) {
-                result = result && (repo.fullData.language === filter.language);
+                result = result && repo.fullData.language === filter.language;
             }
             return result;
-        })
+        });
     }
 
     yield put({
@@ -100,32 +100,32 @@ function* fetchDevs(data: any) {
     let developers: IDeveloper[] = yield call(callApi, url, params);
 
     // fill FullData
-    const callsFullData = (developers).map((x) => {
+    const callsFullData = developers.map((x) => {
         const urlFullData = `${Const.ApiBaseUrl}/users/${x.id}`;
         return call(callApi, urlFullData, params);
     });
 
     const fullData: IDeveloperFull[] = yield all(callsFullData);
 
-    fullData.forEach(fullDev => {
-        const dev = developers.find(d => d.id === +fullDev.login);
+    fullData.forEach((fullDev) => {
+        const dev = developers.find((d) => d.id === +fullDev.login);
         if (dev) {
             dev.fullData = fullDev;
         }
     });
-    
+
     // fill Repos
-    const callsReposData = (developers).map((x) => {
+    const callsReposData = developers.map((x) => {
         const urlFullData = `${Const.ApiBaseUrl}/users/${x.id}/repos`;
         return call(callApi, urlFullData, params);
     });
     const reposData: IRepositoryFull[][] = yield all(callsReposData);
 
-    reposData.forEach(reposForUser => {
+    reposData.forEach((reposForUser) => {
         if (reposForUser.length === 0) return;
 
         const devId = reposForUser[0].owner.login;
-        const dev = developers.find(d => d.id === +devId);
+        const dev = developers.find((d) => d.id === +devId);
         if (dev) {
             if (!dev.fullRepos) dev.fullRepos = [];
             dev.fullRepos.push(...reposForUser);
@@ -133,7 +133,7 @@ function* fetchDevs(data: any) {
     });
 
     // fill Followers
-    const callsFollowersData = (developers).map((x) => {
+    const callsFollowersData = developers.map((x) => {
         const urlFullData = `${Const.ApiBaseUrl}/users/${x.id}/followers`;
         return call(callApi, urlFullData, params);
     });
@@ -149,19 +149,19 @@ function* fetchDevs(data: any) {
     // This is emulation of filtering data (on client side, cause I haven't found filtering methods for the REST API endpoints)
     const filter: ICustomFilter = data.data;
     if (filter) {
-        developers = developers.filter(dev => {
+        developers = developers.filter((dev) => {
             let result = true;
             if (filter.dateRange) {
-                result = result && (!!dev.fullData?.updated_at); //??
+                result = result && !!dev.fullData?.updated_at; //??
             }
             if (filter.spokenLanguage) {
                 result = result && true; //??
             }
             if (filter.language) {
-                result = result && (dev.fullRepos && dev.fullRepos[0] && dev.fullRepos[0].language === filter.language);
+                result = result && dev.fullRepos && dev.fullRepos[0] && dev.fullRepos[0].language === filter.language;
             }
             return result;
-        })
+        });
     }
 
     yield put({
@@ -173,6 +173,7 @@ function* fetchDevs(data: any) {
 /**
  * This method throws CORS error
  */
+/*
 function* fetchReposGitHubTrends(data: any) {
     const filter = data.data as ICustomFilter;
 
@@ -180,7 +181,7 @@ function* fetchReposGitHubTrends(data: any) {
         section: 'repositories',
         language: filter.language,
         spoken_language_code: filter.spokenLanguage,
-        since: filter.dateRange  || 'daily',
+        since: filter.dateRange || 'daily',
     };
 
     const repositories: IRepository[] = yield call(callPromise, githubTrends, options);
@@ -190,10 +191,12 @@ function* fetchReposGitHubTrends(data: any) {
         repositories,
     });
 }
+*/
 
 /**
  * This method throws CORS error
  */
+/*
 function* fetchDevsGitHubTrends(data: any) {
     const filter = data.data as ICustomFilter;
 
@@ -211,6 +214,7 @@ function* fetchDevsGitHubTrends(data: any) {
         developers,
     });
 }
+*/
 
 //////////////////////////////////////////////////////////////////////
 
@@ -246,7 +250,6 @@ function* doSetUnfollowDev(data: any) {
         developerId,
     });
 }
-
 
 //////////////////////////////////////////////////////////////////////
 

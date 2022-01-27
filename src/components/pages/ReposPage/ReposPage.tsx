@@ -8,9 +8,9 @@ import './ReposPage.scss';
 const ReposPage = (): React.ReactElement => {
     return (
         <div className="repos-page">
-            <Header textId='header-text-repos' />
+            <Header textId="header-text-repos" />
 
-            <div className='repos-page__content'>
+            <div className="repos-page__content">
                 <DataList initialWorkMode={WorkModeEnum.REPOS} />
             </div>
         </div>

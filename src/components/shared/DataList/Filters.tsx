@@ -9,7 +9,7 @@ import './Filters.scss';
 const Filters = (props: IDataListProps): React.ReactElement => {
     const { workMode, onSetCustomFilter } = props;
     const intl = useIntl();
-    const anyOption = intl.formatMessage({id: 'any-option'});
+    const anyOption = intl.formatMessage({ id: 'any-option' });
 
     const [spokenLanguage, setSpokenLanguage] = useState(anyOption);
     const [language, setLanguage] = useState(anyOption);
@@ -17,68 +17,65 @@ const Filters = (props: IDataListProps): React.ReactElement => {
 
     const handleSelectSpokenLanguage = (value: string) => {
         setSpokenLanguage(value);
-    }
+    };
     const handleSelectLanguage = (value: string) => {
         setLanguage(value);
-    }
+    };
     const handleSelectDateRange = (value: string) => {
         setDateRange(value);
-    }
+    };
 
     useEffect(() => {
         const filter = getCustomFilter();
         onSetCustomFilter(filter);
     }, [spokenLanguage, language, dateRange]);
 
-    const getCustomFilter = () : ICustomFilter => {
-        return { 
+    const getCustomFilter = (): ICustomFilter => {
+        return {
             spokenLanguage: spokenLanguage === anyOption ? '' : spokenLanguage,
             language: language === anyOption ? '' : language,
             dateRange: dateRange === anyOption ? '' : dateRange,
         };
-    }
+    };
 
     return (
-        <div className='data-filters'>
-            { workMode === WorkModeEnum.REPOS && (
-                    <FormGroup className='data-filters__item'>
-                        <FormattedMessage id='label-spoken-language'/>
-                        <DropdownButton
-                            className='data-filters__item-dropdown'
-                            menuVariant="dark"
-                            title={spokenLanguage}
-                        >
-                            {[anyOption, ...Const.SpokenLanguages].map(x => (
-                                <Dropdown.Item key={x} onClick={() => handleSelectSpokenLanguage(x)} active={spokenLanguage === x}>{x}</Dropdown.Item>
-                            ))}
-                        </DropdownButton>
-                    </FormGroup>
-                )
-            }
+        <div className="data-filters">
+            {workMode === WorkModeEnum.REPOS && (
+                <FormGroup className="data-filters__item">
+                    <FormattedMessage id="label-spoken-language" />
+                    <DropdownButton className="data-filters__item-dropdown" menuVariant="dark" title={spokenLanguage}>
+                        {[anyOption, ...Const.SpokenLanguages].map((x) => (
+                            <Dropdown.Item
+                                key={x}
+                                onClick={() => handleSelectSpokenLanguage(x)}
+                                active={spokenLanguage === x}
+                            >
+                                {x}
+                            </Dropdown.Item>
+                        ))}
+                    </DropdownButton>
+                </FormGroup>
+            )}
 
-            <FormGroup className='data-filters__item'>
-                <FormattedMessage id='label-language'/>
+            <FormGroup className="data-filters__item">
+                <FormattedMessage id="label-language" />
 
-                <DropdownButton
-                    className='data-filters__item-dropdown'
-                    menuVariant="dark"
-                    title={language}
-                >
-                    {[anyOption, ...Const.Languages].map(x => (
-                        <Dropdown.Item key={x} onClick={() => handleSelectLanguage(x)} active={language === x}>{x}</Dropdown.Item>
+                <DropdownButton className="data-filters__item-dropdown" menuVariant="dark" title={language}>
+                    {[anyOption, ...Const.Languages].map((x) => (
+                        <Dropdown.Item key={x} onClick={() => handleSelectLanguage(x)} active={language === x}>
+                            {x}
+                        </Dropdown.Item>
                     ))}
                 </DropdownButton>
             </FormGroup>
 
-            <FormGroup className='data-filters__item'>
-                <FormattedMessage id='label-date-range'/>
-                <DropdownButton
-                    className='data-filters__item-dropdown'
-                    menuVariant="dark"
-                    title={dateRange}
-                >
-                    {[anyOption, ...Const.DateRanges].map(x => (
-                        <Dropdown.Item key={x} onClick={() => handleSelectDateRange(x)} active={dateRange === x}>{x}</Dropdown.Item>
+            <FormGroup className="data-filters__item">
+                <FormattedMessage id="label-date-range" />
+                <DropdownButton className="data-filters__item-dropdown" menuVariant="dark" title={dateRange}>
+                    {[anyOption, ...Const.DateRanges].map((x) => (
+                        <Dropdown.Item key={x} onClick={() => handleSelectDateRange(x)} active={dateRange === x}>
+                            {x}
+                        </Dropdown.Item>
                     ))}
                 </DropdownButton>
             </FormGroup>

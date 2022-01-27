@@ -1,4 +1,4 @@
-import React, {Dispatch, useEffect} from 'react';
+import React, { Dispatch, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { selectWorkMode, selectCustomFilter } from '../../../redux/selectors';
@@ -20,16 +20,17 @@ const DataList = (props: IDataListProps): React.ReactElement => {
 
     return (
         <div className="data-list">
-            <div className='data-list__top-pane'>
+            <div className="data-list__top-pane">
                 <WorkModeSwitcher workMode={workMode} onSetWorkMode={setWorkMode} />
-                <Filters workMode={workMode} onSetCustomFilter={setCustomFilter}/>
+                <Filters workMode={workMode} onSetCustomFilter={setCustomFilter} />
             </div>
 
-            <div className='data-list__data-pane'>
-                { workMode === WorkModeEnum.REPOS 
-                    ? <DataRepos filter={customFilter} />
-                    : <DataDevs filter={customFilter} />
-                }
+            <div className="data-list__data-pane">
+                {workMode === WorkModeEnum.REPOS ? (
+                    <DataRepos filter={customFilter} />
+                ) : (
+                    <DataDevs filter={customFilter} />
+                )}
             </div>
         </div>
     );

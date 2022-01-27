@@ -1,8 +1,6 @@
 import { AnyAction, combineReducers } from 'redux';
 
-import {
-    IDataState, WorkModeEnum
-} from '../utils/types';
+import { IDataState, WorkModeEnum } from '../utils/types';
 import {
     GET_DEVS,
     GET_REPOS,
@@ -15,7 +13,7 @@ import {
     SET_UNFOLLOW_DEV_DONE,
     SET_STAR_REPO,
     SET_FOLLOW_DEV,
-    SET_UNFOLLOW_DEV
+    SET_UNFOLLOW_DEV,
 } from './actions';
 
 const initialState: IDataState = {
@@ -57,8 +55,8 @@ const mainReducer = (state = initialState, action: AnyAction): InitialStateType 
             return { ...state, customFilter };
         }
 
-        case SET_STAR_REPO: 
-        case SET_FOLLOW_DEV: 
+        case SET_STAR_REPO:
+        case SET_FOLLOW_DEV:
         case SET_UNFOLLOW_DEV: {
             return { ...state, starExecuted: false, followExecuted: false, error: false };
         }

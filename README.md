@@ -8,6 +8,8 @@ React-based application for Test React Functionality
 
 That's why I used standard GitHub API to get data: https://api.github.com
 
+Please, fill-up your value for the Developer Token in the file `src\utils\const.ts`, property `GitHubAccessToken` to have an access to implement API requests.
+
 ## **Requirements/dependencies**
 
 - husky

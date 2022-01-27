@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { injectStyle } from "react-toastify/dist/inject-style";
+import { injectStyle } from 'react-toastify/dist/inject-style';
 
 import { getLocaleInfo } from './utils/locale';
 
